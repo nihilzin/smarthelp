@@ -1,0 +1,44 @@
+{#
+ * ---------------------------------------------------------------------
+ *
+ * Powered by Urich Souza 
+ *
+ * https://github.com/nihilzin
+ *
+ * @copyright 2023 Urich Souza and contributors.
+ * 
+ * ---------------------------------------------------------------------
+ #}
+
+<hr>
+
+<h2>{{ __("One last thing before starting") }}</h2>
+
+<p>
+   {{ glpinetwork|raw }}
+</p>
+
+{% if not telemetry_enabled %}
+   <hr>
+   <p>
+      {{ telemetry_info|raw }}
+   </p>
+{% endif %}
+
+<hr>
+<p>
+   {{ reference_info|raw }}
+</p>
+
+<hr>
+<form action="update.php" method="post" data-submit-once>
+   <div class="text-center">
+      <button type="submit" class="btn btn-primary">
+         <i class="fas fa-thumbs-up me-1"></i>
+         {{ __("Use GLPI") }}
+      </button>
+   </div>
+
+   <input type="hidden" name="update_end" value="1">
+   <input type="hidden" name="_glpi_csrf_token" value="{{ csrf_token() }}">
+</form>

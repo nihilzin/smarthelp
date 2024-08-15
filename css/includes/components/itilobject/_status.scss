@@ -1,0 +1,52 @@
+/**
+ * ---------------------------------------------------------------------
+ *
+ * Powered by Urich Souza 
+ *
+ * https://github.com/nihilzin
+ *
+ * @copyright 2023 Urich Souza and contributors.
+ * 
+ * ---------------------------------------------------------------------
+ */
+
+.itilstatus,
+.validationstatus {
+    &.assigned,
+    &.new {
+        color: #49bf4d;
+    }
+
+    &.accepted {
+        color: green;
+    }
+
+    &.refused {
+        color: rgb(167, 47, 0);
+    }
+
+    &.test,
+    &.qualif,
+    &.waiting {
+        color: orange;
+    }
+
+    &.approval {
+        color: #8cabdb;
+    }
+
+    &.eval {
+        color: lightblue;
+    }
+
+    &.closed,
+    &.solved,
+    &.observe,
+    &.canceled {
+        color: black;
+    }
+
+    &.planned {
+        color: #1b2f62;
+    }
+}

@@ -1,0 +1,87 @@
+/**
+ * ---------------------------------------------------------------------
+ *
+ * Powered by Urich Souza 
+ *
+ * https://github.com/nihilzin
+ *
+ * @copyright 2023 Urich Souza and contributors.
+ * 
+ * ---------------------------------------------------------------------
+ */
+
+.asset,
+.navigationheader {
+    .card-header {
+        background-color: $header-bg;
+        color: $header-fg;
+        border-color: $header-border-color;
+
+        &:not(.main-header) {
+            border-top: 1px solid $header-border-color;
+        }
+
+        .badge {
+            @include tabler-badge-fix;
+
+            &.entity-name {
+                background-color: $header-badge-bg;
+                color: $header-badge-fg;
+            }
+        }
+
+        .badge .ribbon {
+            left: 0.5rem;
+        }
+
+        // remove margin-left is small screen
+        @include media-breakpoint-down(sm) {
+            .card-title {
+                padding-left: 0 !important;
+            }
+
+            .badge {
+                margin-left: 0 !important;
+            }
+        }
+    }
+
+    &.asset-deleted {
+        .card-header {
+            background-color: tint-color($header-danger-bg, 30%);
+            color: shade-color($header-danger-bg, 50%);
+            border-color: shade-color($header-danger-bg, 50%);
+
+            .badge.entity-name {
+                background-color: tint-color($header-danger-bg, 80%);
+                color: shade-color($header-danger-bg, 50%);
+            }
+        }
+    }
+
+    .asset-pictures {
+        max-height: 40em;
+        overflow-y: auto;
+    }
+}
+
+#page > .asset {
+    margin-top: 15px; // Fix top of form when embedded in iframe (Usually positioned properly because of .tab-content)
+}
+
+.navigationheader {
+    .main-header {
+        padding-top: 0;
+        padding-bottom: 0;
+
+        .ribbon {
+            position: relative;
+            left: -0.25rem;
+        }
+    }
+
+    .card-header {
+        background-color: transparent !important;
+        border-color: transparent !important;
+    }
+}

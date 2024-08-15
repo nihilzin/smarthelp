@@ -1,0 +1,105 @@
+<?php
+
+/**
+ * ---------------------------------------------------------------------
+ *
+ * Powered by Urich Souza 
+ *
+ * https://github.com/nihilzin
+ *
+ * @copyright 2023 Urich Souza and contributors.
+ * 
+ * ---------------------------------------------------------------------
+ */
+
+include('../inc/includes.php');
+
+header("Content-Type: text/html; charset=UTF-8");
+Html::header_nocache();
+
+if (!isset($_POST["itemtype"]) || !($item = getItemForItemtype($_POST['itemtype']))) {
+    exit();
+}
+
+if (Infocom::canApplyOn($_POST["itemtype"])) {
+    Session::checkSeveralRightsOr([$_POST["itemtype"] => UPDATE,
+        "infocom"          => UPDATE
+    ]);
+} else {
+    $item->checkGlobal(UPDATE);
+}
+
+$inline = false;
+if (isset($_POST['inline']) && $_POST['inline']) {
+    $inline = true;
+}
+$submitname = _sx('button', 'Post');
+if (isset($_POST['submitname']) && $_POST['submitname']) {
+    $submitname = stripslashes($_POST['submitname']);
+}
+
+
+if (
+    isset($_POST["itemtype"])
+    && isset($_POST["id_field"]) && $_POST["id_field"]
+) {
+    $search = Search::getOptions($_POST["itemtype"]);
+    if (!isset($search[$_POST["id_field"]])) {
+        exit();
+    }
+
+    $search            = $search[$_POST["id_field"]];
+
+    echo "<table class='tab_glpi w-100'><tr><td>";
+
+    $plugdisplay = false;
+   // Specific plugin Type case
+    if (
+        ($plug = isPluginItemType($_POST["itemtype"]))
+        // Specific for plugin which add link to core object
+        || ($plug = isPluginItemType(getItemTypeForTable($search['table'])))
+    ) {
+        $plugdisplay = Plugin::doOneHook(
+            $plug['plugin'],
+            'MassiveActionsFieldsDisplay',
+            ['itemtype' => $_POST["itemtype"],
+                'options'  => $search
+            ]
+        );
+    }
+
+    $fieldname = '';
+
+    if (
+        empty($search["linkfield"])
+        || ($search['table'] == 'glpi_infocoms')
+    ) {
+        $fieldname = $search["field"];
+    } else {
+        $fieldname = $search["linkfield"];
+    }
+    if (!$plugdisplay) {
+        $options = [];
+        $values  = [];
+       // For ticket template or aditional options of massive actions
+        if (isset($_POST['options'])) {
+            $options = $_POST['options'];
+        }
+        if (isset($_POST['additionalvalues'])) {
+            $values = $_POST['additionalvalues'];
+        }
+        $values[$search["field"]] = '';
+        echo $item->getValueToSelect($search, $fieldname, $values, $options);
+    }
+
+    echo "<input type='hidden' name='field' value='$fieldname'>";
+    echo "</td>";
+    if ($inline) {
+        echo "<td><input type='submit' name='massiveaction' class='btn btn-primary' value='$submitname'></td>";
+    }
+    echo "</tr></table>";
+
+    if (!$inline) {
+        echo "<br><input type='submit' name='massiveaction' class='btn btn-primary' value='$submitname'>";
+    }
+}

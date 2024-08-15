@@ -1,0 +1,32 @@
+/**
+ * ---------------------------------------------------------------------
+ *
+ * Powered by Urich Souza 
+ *
+ * https://github.com/nihilzin
+ *
+ * @copyright 2023 Urich Souza and contributors.
+ * 
+ * ---------------------------------------------------------------------
+ */
+
+.sortable-rules {
+    .sortable-placeholder {
+        background: #e7f06367;
+        border: 1px dashed #ccc;
+        min-height: 80px;
+        min-width: 50px;
+        padding: 10px;
+        margin: 10px;
+        opacity: 0.5;
+    }
+
+    .grip-rule {
+        cursor: pointer;
+        cursor: grab;
+
+        &:active {
+            cursor: grabbing;
+        }
+    }
+}

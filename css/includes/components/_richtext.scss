@@ -1,0 +1,80 @@
+/**
+ * ---------------------------------------------------------------------
+ *
+ * Powered by Urich Souza 
+ *
+ * https://github.com/nihilzin
+ *
+ * @copyright 2023 Urich Souza and contributors.
+ * 
+ * ---------------------------------------------------------------------
+ */
+
+body.mce-content-body {
+    margin: 15px 10px;
+
+    @if not $is-dark {
+        background: transparent;
+    }
+
+    [data-user-mention="true"] {
+        cursor: default !important; // Overrides "not-allowed" cursor on noneditable content
+    }
+}
+
+#page .tox .tox-statusbar {
+    border-top: transparent;
+}
+
+.tox.tox-tinymce {
+    border: $input-border-width solid $input-border-color;
+
+    @include border-radius($input-border-radius, 0);
+}
+
+.rich_text_container {
+    white-space: initial;
+    max-width: 100%;
+
+    thead,
+    tbody,
+    tfoot,
+    tr,
+    td,
+    th {
+        border-width: inherit; // Prevent removal of borders from reboot CSS
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    table {
+        overflow: auto;
+        max-width: 100%;
+        word-break: normal;
+    }
+
+    a[target="_blank"]::before {
+        font-family: tabler-icons;
+        content: "\ea99";
+        padding-right: 4px;
+    }
+
+    .long_text {
+        max-height: 350px;
+        position: relative;
+        overflow: hidden;
+
+        .read_more {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0%) 0%, #f1f4e3 100%);
+        }
+    }
+}
+
+.user-mention,
+[data-user-mention="true"] {
+    background: rgba(0, 0, 0, 20%);
+    border-radius: 3px;
+    padding: 5px;
+}

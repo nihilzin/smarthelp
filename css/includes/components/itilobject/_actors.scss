@@ -1,0 +1,25 @@
+/**
+ * ---------------------------------------------------------------------
+ *
+ * Powered by Urich Souza 
+ *
+ * https://github.com/nihilzin
+ *
+ * @copyright 2023 Urich Souza and contributors.
+ * 
+ * ---------------------------------------------------------------------
+ */
+
+.actor-field.select2-selection .select2-selection__rendered {
+    direction: ltr;
+}
+
+.actor_entry {
+    .edit-notify-user {
+        margin-top: -0.15rem; // fix bottom push (2px) of .actor_entry
+    }
+
+    .assign_infos a {
+        color: inherit;
+    }
+}

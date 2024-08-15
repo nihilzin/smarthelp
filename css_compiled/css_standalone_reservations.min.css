@@ -1,0 +1,17 @@
+/*!
+ * ---------------------------------------------------------------------
+ *
+ * Powered by Urich Souza 
+ *
+ * https://github.com/nihilzin
+ *
+ * @copyright 2023 Urich Souza and contributors.
+ * 
+ * ---------------------------------------------------------------------
+ */
+.reservations-planning a .fc-time, .reservations-planning .fc-title {
+  color: initial;
+}
+.reservations-planning .defaultDate {
+  background: #e3fce8;
+}

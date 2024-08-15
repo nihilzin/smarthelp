@@ -1,0 +1,23 @@
+/**
+ * ---------------------------------------------------------------------
+ *
+ * Powered by Urich Souza 
+ *
+ * https://github.com/nihilzin
+ *
+ * @copyright 2023 Urich Souza and contributors.
+ * 
+ * ---------------------------------------------------------------------
+ */
+
+// @TODO Encapsulate all styles inside a common class
+.reservations-planning {
+    a .fc-time,
+    .fc-title {
+        color: initial;
+    }
+
+    .defaultDate {
+        background: #e3fce8;
+    }
+}
